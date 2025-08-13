@@ -3,52 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>JAPANESE LANDING PAGE</title>
     <link rel="stylesheet" href="style.css">
-
 </head>
 <style>
-    body{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-        background: linear-gradient(to right, rgb(5, 4, 4), rgb(0, 0, 0));
-    }
-    #box {
-        width: 500px;
-        height: 100px;
-        background-color: transparent;
-        animation: gradient 5s infinite alternate;
-        border-radius: 35%;
-        box-shadow: 4px 5px 5px      gold;
-        padding: 10px;
-
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
 }
-
-@keyframes gradient {
-        0% {
-            background-color: rgba(255, 0, 0, 0.5);
-        }
-        100% {
-            background-color: rgba(0, 0, 255, 0.5);
-        }
-    }
+html, body {
+    width: 100%;
+    height: 100%;
+}
+.parent{
+    height: 100%;
+    width: 100%;
+    /* background-color: lightsalmon; */
+    background: linear-gradient(to left, salmon, lightseagreen);
+    display: flex;
+}
+#child1{
+    width: 1150px;
     
-H1{
-        color: gold ;
-        text-align: center;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        font-family: 'Arial', sans-serif;
-
+    height: 580px;
+    /* background: linear-gradient(to right, salmon, lightseagreen); */
+    color:transparent;
+    margin-top: 60px;
+    margin-left: 200px;
+    border-radius: 10px;
+    box-shadow: 4px 8px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 1;
 }
-
+#child2{
+        color: transparent;
+        position: absolute;
+        z-index: 1;
+        margin-left: 630px;
+        margin-top: 80px;
+        font-family:Arial, Helvetica, sans-serif;
+        text-shadow: 3px 3px 2px rgba(255, 88, 88, 0.721);
+        font-size: 50px;
+        line-height: 1.2;
+        font-weight: 800;
+        font-style: italic;
+    text-transform: uppercase;
+    background: linear-gradient(270deg, #ffb6c1, #20b2aa, #ffb6c1, #20b2aa);
+    background-size: 400% 400%;
+    animation: gradientMove 6s ease-in-out infinite;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    mix-blend-mode: lighten;
+    @keyframes gradientMove {
+        0% {background-position: 0% 50%;}
+        50% {background-position: 100% 50%;}
+        100% {background-position: 0% 50%;}
+    }
+}
+h1{ 
+        color: transparent;
+        position: absolute;
+        z-index: 1;
+        margin-left: 70px;
+        margin-top: 20px;
+        font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        text-shadow: 3px 3px 2px black);
+        font-size: 25px;
+        line-height: 1.2;
+        font-weight: 10;
+        /* font-style: italic; */
+}
 </style>
 <body>
-    <div id="box"><button>Click Me</button></div>
-    <h2>LAMBERGAMBAR</h2>
+    <div class="parent">
+        <div id="child1"></div>
+        <canvas id="confetti-canvas" style="position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 0;"></canvas>
+        <script>
+        const canvas = document.getElementById('confetti-canvas');
+        const ctx = canvas.getContext('2d');
+        let W = window.innerWidth;
+        let H = window.innerHeight;
+        canvas.width = W;
+        canvas.height = H;
+
+        const confettiColors = [' #ffc0cb', ' #ffc0cb', ' #ffc0cb', ' #ffc0cb', ' #ffc0cb', ' #ffc0cb', ' #ffc0cb'];
+        const confettiCount = 120;
+        const confetti = [];
+
+        function randomBetween(a, b) {
+            return a + Math.random() * (b - a);
+        }
+
+        for (let i = 0; i < confettiCount; i++) {
+            confetti.push({
+                x: randomBetween(0, W),
+                y: randomBetween(-H, 0),
+                r: randomBetween(5, 10),
+                d: randomBetween(2, 8),
+                color: confettiColors[Math.floor(Math.random() * confettiColors.length)],
+                tilt: randomBetween(-10, 10),
+                tiltAngle: randomBetween(0, Math.PI * 2),
+                tiltAngleIncrement: randomBetween(0.01, 0.05)
+            });
+        }
+
+        function drawConfetti() {
+            ctx.clearRect(0, 0, W, H);
+            confetti.forEach(c => {
+                ctx.beginPath();
+                ctx.ellipse(c.x, c.y, c.r, c.r/2, c.tilt, 0, 2 * Math.PI);
+                ctx.fillStyle = c.color;
+                ctx.fill();
+            });
+        }
+
+        function updateConfetti() {
+            confetti.forEach(c => {
+                c.y += c.d;
+                c.x += Math.sin(c.tiltAngle) * 2;
+                c.tiltAngle += c.tiltAngleIncrement;
+                if (c.y > H) {
+                    c.x = randomBetween(0, W);
+                    c.y = randomBetween(-20, 0);
+                }
+            });
+        }
+
+        function animateConfetti() {
+            drawConfetti();
+            updateConfetti();
+            requestAnimationFrame(animateConfetti);
+        }
+
+        window.addEventListener('resize', () => {
+            W = window.innerWidth;
+            H = window.innerHeight;
+            canvas.width = W;
+            canvas.height = H;
+        });
+
+        animateConfetti();
+        </script>
+        <div id="child2">こんにちは
+            <h1>Hello!!</h1>
+        </div>
+        <div id="child3"></div>
+        <div id="child4"></div>
+    </div>
 </body>
 </html>
