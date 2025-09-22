@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>IIT FARIDABAD </title>
+    <style>
+ 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0f244d;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: #133d71;
+            padding: 20px 0;
+            text-align: center;
+            font-size: 2.5rem;
+            letter-spacing: 3px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        nav {
+            background-color: #194177;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            padding: 15px 0;
+            box-shadow: inset 0 -3px 5px rgba(0,0,0,0.3);
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #0a2a5a;
+        }
+
+        main {
+            flex: 1;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        form {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 20px;
+            width: 400px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+        }
+
+        form h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            color: #aad4ff;
+            letter-spacing: 1.5px;
+        }
+
+        label {
+            display: block;
+            margin: 15px 0 8px;
+            font-weight: 600;
+        }
+
+        input[type="text"], input[type="email"], select {
+            width: 100%;
+            padding: 10px 15px;
+            border-radius: 15px;
+            border: none;
+            font-size: 1rem;
+            outline: none;
+            background-color: rgba(255,255,255,0.3);
+            color: black;
+            transition: background-color 0.3s;
+        }
+
+        input[type="text"]::placeholder,
+        input[type="email"]::placeholder {
+            color: #555;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        select:focus {
+            background-color: #fff;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 8px;
+        }
+
+        .radio-group label {
+            font-weight: normal;
+            color: #eef5ff;
+        }
+
+        .submit-btn {
+            margin-top: 30px;
+            width: 100%;
+            padding: 12px;
+            background-color: #1e74ff;
+            border: none;
+            border-radius: 25px;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #145ed0;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            form {
+                width: 90vw;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        IIT FARIDABAD
+    </header>
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Courses</a>
+        <a href="#">Admissions</a>
+        <a href="#">Contact</a>
+    </nav>
+    <main>
+        <form>
+            <h2>Student Admission Form</h2>
+            
+            <label for="search">Search University Info</label>
+            <input type="text" id="search" name="search" placeholder="Type to search..." />
+
+            <label for="program">Select Program</label>
+            <select id="program" name="program" required>
+                <option value="">Select your program</option>
+                <option value="btech">B.Tech - Computer Science</option>
+                <option value="btech-ai">B.Tech - AI & ML</option>
+                <option value="bba">BBA - Business Administration</option>
+                <option value="mba">MBA - Master of Business Admin</option>
+                <option value="phd">PhD - Research</option>
+            </select>
+
+            <label>Preferred Mode of Study</label>
+            <div class="radio-group">
+                <label><input type="radio" name="mode" value="fulltime" /> Full-Time</label>
+                <label><input type="radio" name="mode" value="parttime" /> Part-Time</label>
+                <label><input type="radio" name="mode" value="online" /> Online</label>
+            </div>
+
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" required />
+
+            <button type="submit" class="submit-btn">Submit Application</button>
+        </form>
+    </main>
+</body>
+</html>
